@@ -41,8 +41,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>C:\Users\jeffrey.johnson\Documents\GitHub\GoogleTest\msvc\gtest-md_new\Debug\;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\Users\jeffrey.johnson\Documents\GitHub\retro_redux\include\;C:\Users\jeffrey.johnson\Documents\GitHub\GoogleTest\include\;C:\Users\jeffrey.johnson\Documents\GitHub\GoogleTest\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\GoogleTest\msvc\gtest-md\Debug\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\retro_redux\include\;$(ProjectDir)include\;$(ProjectDir)..\GoogleTest\include\;$(ProjectDir)..\GoogleTest\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -61,6 +61,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>gtestd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>"$(TargetDir)$(TargetFileName)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -84,10 +87,12 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\retro_redux\include\TheMath.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\retro_redux\source\TheMath.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="unit_tests_retro_redux.cpp" />
   </ItemGroup>
