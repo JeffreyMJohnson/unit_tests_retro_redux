@@ -24,9 +24,9 @@ TEST(matrix3, constructorDefault)
 TEST(matrix3, constructor)
 {
 	Matrix3 m(
-		10.0f, 11.0f, 12.0f,
-		20.0f, 21.0f, 22.0f,
-		30.0f, 31.0f, 32.0f);
+		10, 11, 12,
+		20, 21, 22,
+		30, 31, 32);
 
 	EXPECT_FLOAT_EQ(10, m.matrix[0][0]);
 	EXPECT_FLOAT_EQ(11, m.matrix[0][1]);
@@ -63,6 +63,51 @@ TEST(matrix3, equality)
 
 }
 
+TEST(matrix3, assignmentOperator)
+{
+	Matrix3 m1(
+		1, 2, 3,
+		4, 5, 6,
+		7, 8, 9);
+	Matrix3 m2;
+	Matrix3 m3;
+	m3 = m2 = m1;
+
+	EXPECT_TRUE(m1 == m2);
+	EXPECT_TRUE(m1 == m3);
+
+}
+
+TEST(matrix3, identity)
+{
+	Matrix3 expect(
+		1, 0, 0,
+		0, 1, 0,
+		0, 0, 1);
+	EXPECT_TRUE(expect == Matrix3::Identity());
+}
+
+TEST(matrix3, additionAssignemntOperator)
+{
+	Matrix3 m1(
+		1, 2, 3,
+		4, 5, 6,
+		7, 8, 9);
+	Matrix3 m2(
+		9, 8, 7,
+		6, 5, 4,
+		3, 2, 1);
+	Matrix3 expect(
+		10, 10, 10,
+		10, 10, 10,
+		10, 10, 10);
+	EXPECT_TRUE(expect == (m1 += m2));
+	EXPECT_TRUE(m2 ==
+		Matrix3(
+		9, 8, 7,
+		6, 5, 4,
+		3, 2, 1));
+}
 
 
 #endif
