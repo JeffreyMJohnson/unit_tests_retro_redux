@@ -57,6 +57,13 @@ TEST(vector2, assignmentOperator)
 	v1.x = 10;
 	EXPECT_TRUE(v1 == Vector2(10, 10));
 	EXPECT_TRUE(v2 == Vector2(5, 10));
+
+	//verify chaining is possible a=b=c
+	Vector2 v3 = v2 = v1;
+
+	EXPECT_TRUE(v1 == Vector2(10, 10));
+	EXPECT_TRUE(v2 == Vector2(10, 10));
+	EXPECT_TRUE(v3 == Vector2(10, 10));
 }
 
 TEST(vector2, additionOperator)
@@ -79,6 +86,11 @@ TEST(vector2, additionAssignmentOperator)
 
 	EXPECT_TRUE(v1 == Vector2(15, 15)) << "verify addition applied";
 	EXPECT_TRUE(v2 == Vector2(10, 10)) << "verify unchanged";
+
+	//verify chaining is doable for crazy people
+	(v2 += Vector2(1, 1)) += Vector2(4, 4);
+
+	EXPECT_TRUE(v2 == Vector2(15, 15));
 }
 
 TEST(vector2, subtractOperator)
