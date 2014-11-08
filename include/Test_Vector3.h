@@ -18,10 +18,46 @@ TEST(vector3, constructorDefault)
 
 TEST(vector3, constructor)
 {
-	Vector3 v(1,2,3);
+	Vector3 v(1, 2, 3);
 	EXPECT_FLOAT_EQ(1, v.x);
 	EXPECT_FLOAT_EQ(2, v.y);
 	EXPECT_FLOAT_EQ(3, v.z);
+}
+
+TEST(vector3, getVector3FromMatrix)
+{
+	Matrix3 mRow(
+		0, 1, 2,
+		3, 4, 5,
+		6, 7, 8);
+
+	Matrix3 mCol(
+		0, 3, 6,
+		1, 4, 7,
+		2, 5, 8);
+
+	MATRIX_MAJOR majorType = ROW;
+
+	Vector3 result = Vector3::GetVector3(majorType, 0, mRow);
+	EXPECT_TRUE(result == Vector3(0, 1, 2));
+
+	result = Vector3::GetVector3(majorType, 1, mRow);
+	EXPECT_TRUE(result == Vector3(3, 4, 5));
+
+	result = Vector3::GetVector3(majorType, 2, mRow);
+	EXPECT_TRUE(result == Vector3(6, 7, 8));
+
+	majorType = COL;
+	result = Vector3::GetVector3(majorType, 0, mCol);
+	EXPECT_TRUE(result == Vector3(0, 1, 2));
+
+	result = Vector3::GetVector3(majorType, 1, mCol);
+	EXPECT_TRUE(result == Vector3(3, 4, 5));
+
+	result = Vector3::GetVector3(majorType, 2, mCol);
+	EXPECT_TRUE(result == Vector3(6, 7, 8));
+
+
 }
 
 //test equality operator so can use to verify future tests
@@ -54,7 +90,7 @@ TEST(vector3, assignmentOperator)
 	Vector3 v1(5, 10, 15);
 	Vector3 v2 = v1;
 	EXPECT_TRUE(v2 == v1);
-	
+
 	//change v1 and verify v2 did not change
 	v1.x = 10;
 	EXPECT_TRUE(v1 == Vector3(10, 10, 15));
