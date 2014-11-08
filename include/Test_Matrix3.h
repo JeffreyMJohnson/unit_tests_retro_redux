@@ -206,6 +206,40 @@ TEST(matrix3, setupRotation)
 
 }
 
+TEST(matrix3, setupScale)
+{
+	Matrix3 m = Matrix3::SetupScale(Vector2(5, 10));
+	Matrix3 expect(
+		5, 0, 0,
+		0, 10, 0,
+		0, 0, 1);
+	EXPECT_TRUE(m == expect);
+
+	m = Matrix3::SetupScale(Vector2(.25, .5));
+	expect = Matrix3(
+		.25, 0, 0,
+		0, .50, 0,
+		0, 0, 1);
+	EXPECT_TRUE(m == expect);
+}
+
+TEST(matrix3, setupTranslation)
+{
+	Matrix3 m = Matrix3::SetupTranslation(Vector2(2, 5));
+	Matrix3 expect(
+		1, 0, 2,
+		0, 1, 5,
+		0, 0, 1);
+	EXPECT_TRUE(expect == m) << "result:\n" << m << "\nexpected:\n" << expect;
+
+	m = Matrix3::SetupTranslation(Vector2(5, -1));
+	expect = Matrix3(
+		1, 0, 5,
+		0, 1, -1,
+		0, 0, 1);
+	EXPECT_TRUE(expect == m) << "result:\n" << m << "\nexpected:\n" << expect;
+}
+
 TEST(matrix3, additionOperator)
 {
 	Matrix3 m1(
