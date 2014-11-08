@@ -179,6 +179,33 @@ TEST(matrix3, identity)
 	EXPECT_TRUE(expect == Matrix3::Identity());
 }
 
+TEST(matrix3, setupRotation)
+{
+	Matrix3 m = Matrix3::SetupRotation(Helper::DegreeToRadians(0));
+	Matrix3 expected(
+		1, 0, 0,
+		0, 1, 0,
+		0, 0, 1);
+	EXPECT_TRUE(expected == m) << "result:\n" << m << "\nexpected:\n" << expected;
+
+	float rads = Helper::DegreeToRadians(90);
+	m = Matrix3::SetupRotation(rads);
+	expected = Matrix3(
+		cos(rads), -sin(rads), 0,
+		sin(rads), cos(rads), 0,
+		0, 0, 1);
+	EXPECT_TRUE(expected == m) << "result:\n" << m << "\nexpected:\n" << expected;
+
+	rads = Helper::DegreeToRadians(-90);
+	m = Matrix3::SetupRotation(rads);
+	expected = Matrix3(
+		cos(rads), -sin(rads), 0,
+		sin(rads), cos(rads), 0,
+		0, 0, 1);
+	EXPECT_TRUE(expected == m) << "result:\n" << m << "\nexpected:\n" << expected;
+
+}
+
 TEST(matrix3, additionOperator)
 {
 	Matrix3 m1(
