@@ -107,6 +107,12 @@ TEST(vector3, additionOperator)
 	EXPECT_TRUE(v1 == Vector3(10, 10, 10)) << "verify unchanged";
 	EXPECT_TRUE(v2 == Vector3(5, 5, 5)) << "verify unchanged";
 	EXPECT_TRUE(v3 == Vector3(15, 15, 15)) << "verify addition returned";
+
+	//verify chaining
+	v3 = v1 + v2 + v3;
+	EXPECT_TRUE(v3 == Vector3(30, 30, 30));
+	EXPECT_TRUE(v1 == Vector3(10, 10, 10)) << "verify unchanged";
+	EXPECT_TRUE(v2 == Vector3(5, 5, 5)) << "verify unchanged";
 }
 
 TEST(vector3, additionAssignmentOperator)

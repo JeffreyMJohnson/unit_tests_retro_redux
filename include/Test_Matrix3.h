@@ -181,14 +181,14 @@ TEST(matrix3, identity)
 
 TEST(matrix3, setupRotation)
 {
-	Matrix3 m = Matrix3::SetupRotation(Helper::DegreeToRadians(0));
+	Matrix3 m = Matrix3::SetupRotation(JMath::DegreeToRadians(0));
 	Matrix3 expected(
 		1, 0, 0,
 		0, 1, 0,
 		0, 0, 1);
 	EXPECT_TRUE(expected == m) << "result:\n" << m << "\nexpected:\n" << expected;
 
-	float rads = Helper::DegreeToRadians(90);
+	float rads = JMath::DegreeToRadians(90);
 	m = Matrix3::SetupRotation(rads);
 	expected = Matrix3(
 		cos(rads), -sin(rads), 0,
@@ -196,7 +196,7 @@ TEST(matrix3, setupRotation)
 		0, 0, 1);
 	EXPECT_TRUE(expected == m) << "result:\n" << m << "\nexpected:\n" << expected;
 
-	rads = Helper::DegreeToRadians(-90);
+	rads = JMath::DegreeToRadians(-90);
 	m = Matrix3::SetupRotation(rads);
 	expected = Matrix3(
 		cos(rads), -sin(rads), 0,
@@ -257,6 +257,24 @@ TEST(matrix3, additionOperator)
 		10, 10, 10,
 		10, 10, 10,
 		10, 10, 10);
+
+	EXPECT_TRUE(expect == result);
+	EXPECT_TRUE(m1 == Matrix3(
+		1, 2, 3,
+		4, 5, 6,
+		7, 8, 9));
+	EXPECT_TRUE(m2 == Matrix3(
+		9, 8, 7,
+		6, 5, 4,
+		3, 2, 1));
+
+	//verify chaining 
+	result = m1 + m2 + result;
+	expect = Matrix3(
+		20, 20, 20,
+		20, 20, 20,
+		20, 20, 20);
+
 	EXPECT_TRUE(expect == result);
 	EXPECT_TRUE(m1 == Matrix3(
 		1, 2, 3,
@@ -285,6 +303,23 @@ TEST(matrix3, subtractOperator)
 		8, 6, 4,
 		2, 0, -2,
 		-4, -6, -8);
+	EXPECT_TRUE(expect == result);
+	EXPECT_TRUE(m1 == Matrix3(
+		1, 2, 3,
+		4, 5, 6,
+		7, 8, 9));
+	EXPECT_TRUE(m2 == Matrix3(
+		9, 8, 7,
+		6, 5, 4,
+		3, 2, 1));
+
+	//verify chaining 
+	result = m2 - m1 - m1;
+	expect = Matrix3(
+		7, 4, 1,
+		-2, -5, -8,
+		-11, -14, -17);
+
 	EXPECT_TRUE(expect == result);
 	EXPECT_TRUE(m1 == Matrix3(
 		1, 2, 3,
@@ -370,9 +405,25 @@ TEST(matrix3, productOperator)
 
 	//verify multiply identity equals same matrix
 	EXPECT_TRUE(m3 == (m3 = m3 * Matrix3::Identity()));
+
+	//verify chaining
+	expect = Matrix3(
+		54, 72, 90,
+		42, 57, 72,
+		30, 42, 54);
+	m3 = m1 * m2 * Matrix3::Identity();
+	EXPECT_TRUE(expect == m3)<< "expected\n" << expect << "\nresult:\n" << m3;
+	EXPECT_TRUE(m1 == Matrix3(
+		9, 6, 3,
+		8, 5, 2,
+		7, 4, 1));
+	EXPECT_TRUE(m2 == Matrix3(
+		1, 2, 3,
+		4, 5, 6,
+		7, 8, 9));
 }
 
-TEST(matrix3, productOperatorVector)
+TEST(matrix3, productOperatorVector3)
 {
 	Matrix3 m(
 		3, 12, 6,

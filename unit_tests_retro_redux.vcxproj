@@ -88,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Test_Matrix3.h" />
-    <ClInclude Include="include\Test_Utility.h" />
+    <ClInclude Include="include\Test_JMath.h" />
     <ClInclude Include="include\Test_Vector2.h" />
     <ClInclude Include="include\Test_Vector3.h" />
     <ClInclude Include="stdafx.h" />

@@ -7,12 +7,19 @@ header file defines public API for Google test, needs to be included for any tes
 #include "gtest/gtest.h"
 
 //code under test
-#include "utility.h"
+#include "TheMath.h"
 
-TEST(Utility, DegToRad)
+TEST(jmath, DegToRad)
 {
 	//45 degrees .7853975 rads
-	EXPECT_NEAR(.7853975, Helper::DegreeToRadians(45), .001);
+	EXPECT_NEAR(.7853975, JMath::DegreeToRadians(45), .001);
+
+}
+
+TEST(jmath, radToDeg)
+{
+	//45 degrees .7853975 rads
+	EXPECT_NEAR(45.0f, JMath::RadiansToDegrees(.7853975), .001);
 
 }
 
