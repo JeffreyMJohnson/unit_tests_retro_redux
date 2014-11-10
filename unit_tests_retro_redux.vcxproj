@@ -87,6 +87,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Test_CircleCollider.h" />
     <ClInclude Include="include\Test_Matrix3.h" />
     <ClInclude Include="include\Test_JMath.h" />
     <ClInclude Include="include\Test_Vector2.h" />
@@ -95,6 +96,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\retro_redux\source\CircleCollider.cpp" />
     <ClCompile Include="..\retro_redux\source\Matrix3.cpp" />
     <ClCompile Include="..\retro_redux\source\Vector2.cpp" />
     <ClCompile Include="..\retro_redux\source\Vector3.cpp" />
