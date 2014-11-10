@@ -41,7 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>$(ProjectDir)..\GoogleTest\msvc\gtest-md\Debug\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)..\retro_redux\libs;$(ProjectDir)..\GoogleTest\msvc\gtest-md\Debug\;$(LibraryPath)</LibraryPath>
     <IncludePath>$(ProjectDir)..\retro_redux\include\;$(ProjectDir)include\;$(ProjectDir)..\GoogleTest\include\;$(ProjectDir)..\GoogleTest\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -59,7 +59,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>gtestd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>gtestd.lib;AIE_1st_Year_Framework_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>"$(TargetDir)$(TargetFileName)"</Command>
@@ -87,6 +87,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Test_Bullet.h" />
     <ClInclude Include="include\Test_CircleCollider.h" />
     <ClInclude Include="include\Test_Matrix3.h" />
     <ClInclude Include="include\Test_JMath.h" />
@@ -96,8 +97,20 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\retro_redux\source\Bullet.cpp" />
+    <ClCompile Include="..\retro_redux\source\BulletManager.cpp" />
     <ClCompile Include="..\retro_redux\source\CircleCollider.cpp" />
+    <ClCompile Include="..\retro_redux\source\EndGameState.cpp" />
+    <ClCompile Include="..\retro_redux\source\Enemy.cpp" />
+    <ClCompile Include="..\retro_redux\source\Entity.cpp" />
+    <ClCompile Include="..\retro_redux\source\GameState.cpp" />
+    <ClCompile Include="..\retro_redux\source\HighScores.cpp" />
+    <ClCompile Include="..\retro_redux\source\LeaderBoardState.cpp" />
+    <ClCompile Include="..\retro_redux\source\MainMenuState.cpp" />
     <ClCompile Include="..\retro_redux\source\Matrix3.cpp" />
+    <ClCompile Include="..\retro_redux\source\Player.cpp" />
+    <ClCompile Include="..\retro_redux\source\SplashScreenState.cpp" />
+    <ClCompile Include="..\retro_redux\source\StateMachine.cpp" />
     <ClCompile Include="..\retro_redux\source\Vector2.cpp" />
     <ClCompile Include="..\retro_redux\source\Vector3.cpp" />
     <ClCompile Include="stdafx.cpp" />

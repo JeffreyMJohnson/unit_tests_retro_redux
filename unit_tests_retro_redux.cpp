@@ -14,7 +14,17 @@ header file defines public API for Google test, needs to be included for any tes
 #include "include\Test_Vector2.h"
 #include "include\Test_Vector3.h"
 #include "include\Test_Matrix3.h"
+
 #include "Test_CircleCollider.h"
+#include "include\Test_Bullet.h"
+
+//HACK:: 
+extern const int screenWidth = 600;
+extern const int screenHeight = 800;
+extern const int NUM_ENEMYS = 36;
+extern const int NUM_ENEMY_COLS = 9;
+extern const int NUM_ENEMY_ROWS = 4;
+
 
 int _tmain(int argc, _TCHAR* argv[])
 {
