@@ -38,23 +38,23 @@ TEST(vector3, getVector3FromMatrix)
 
 	MATRIX_MAJOR majorType = ROW;
 
-	Vector3 result = Vector3::GetVector3(majorType, 0, mRow);
+	Vector3 result = Matrix3::GetVector3(majorType, 0, mRow);
 	EXPECT_TRUE(result == Vector3(0, 1, 2));
 
-	result = Vector3::GetVector3(majorType, 1, mRow);
+	result = Matrix3::GetVector3(majorType, 1, mRow);
 	EXPECT_TRUE(result == Vector3(3, 4, 5));
 
-	result = Vector3::GetVector3(majorType, 2, mRow);
+	result = Matrix3::GetVector3(majorType, 2, mRow);
 	EXPECT_TRUE(result == Vector3(6, 7, 8));
 
 	majorType = COL;
-	result = Vector3::GetVector3(majorType, 0, mCol);
+	result = Matrix3::GetVector3(majorType, 0, mCol);
 	EXPECT_TRUE(result == Vector3(0, 1, 2));
 
-	result = Vector3::GetVector3(majorType, 1, mCol);
+	result = Matrix3::GetVector3(majorType, 1, mCol);
 	EXPECT_TRUE(result == Vector3(3, 4, 5));
 
-	result = Vector3::GetVector3(majorType, 2, mCol);
+	result = Matrix3::GetVector3(majorType, 2, mCol);
 	EXPECT_TRUE(result == Vector3(6, 7, 8));
 
 
