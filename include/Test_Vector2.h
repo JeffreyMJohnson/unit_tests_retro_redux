@@ -189,5 +189,24 @@ TEST(vector2, getPerp)
 
 }
 
+TEST(vector2, lerp)
+{
+	float percent = 0;
+	Vector2 start(0, 0);
+	Vector2 end(5, 5);
+	Vector2 result = Vector2::LERP(start, end, percent);
+
+	EXPECT_TRUE(start == result) << "result " << result;
+	percent = 1;
+
+	result = Vector2::LERP(start, end, percent);
+	EXPECT_TRUE(end == result) << "result " << result;
+
+	percent = .5;
+	result = Vector2::LERP(start, end, percent);
+	EXPECT_TRUE(Vector2(2.5, 2.5) == result) << "result " << result;
+}
+
+
 
 #endif
