@@ -17,6 +17,7 @@ header file defines public API for Google test, needs to be included for any tes
 
 #include "Test_CircleCollider.h"
 #include "include\Test_Bullet.h"
+#include "include\Test_Player.h"
 
 //HACK:: 
 extern const int screenWidth = 600;
