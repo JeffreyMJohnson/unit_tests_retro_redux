@@ -95,6 +95,11 @@ TEST(vector3, assignmentOperator)
 	v1.x = 10;
 	EXPECT_TRUE(v1 == Vector3(10, 10, 15));
 	EXPECT_TRUE(v2 == Vector3(5, 10, 15));
+
+	//chaining
+	v1 = v2 = Vector3();
+	EXPECT_TRUE(Vector3() == v1) << v1;
+	EXPECT_TRUE(Vector3() == v2) << v2;
 }
 
 TEST(vector3, additionOperator)
@@ -123,6 +128,11 @@ TEST(vector3, additionAssignmentOperator)
 
 	EXPECT_TRUE(v1 == Vector3(15, 15, 15)) << "verify addition applied";
 	EXPECT_TRUE(v2 == Vector3(10, 10, 10)) << "verify unchanged";
+
+	//chaining
+	v1 += v2 += Vector3(-10, -10, -10);
+	EXPECT_TRUE(Vector3(15, 15, 15) == v1) << v1;
+	EXPECT_TRUE(Vector3() == v2) << v2;
 }
 
 TEST(vector3, subtractOperator)
@@ -145,6 +155,11 @@ TEST(vector3, subtractAssignmentOperator)
 
 	EXPECT_TRUE(v1 == Vector3(-5, -5, -5)) << "verify subtract applied";
 	EXPECT_TRUE(v2 == Vector3(10, 10, 10)) << "verify unchanged";
+
+	//chaining
+	v1 -= v2 -= Vector3(10, 10, 10);
+	EXPECT_TRUE(Vector3(-5, -5, -5) == v1) << v1;
+	EXPECT_TRUE(Vector3() == v2) << v2;
 }
 
 TEST(vector3, multiplyOperator)
@@ -189,6 +204,11 @@ TEST(vector3, normalize)
 	EXPECT_FLOAT_EQ(0.42426406871192851464050661726291, v.x);
 	EXPECT_FLOAT_EQ(0.56568542494923801952067548968388, v.y);
 	EXPECT_FLOAT_EQ(0.70710678118654752440084436210485, v.z);
+
+	Vector3 v2;
+	v2.Normalize();
+	//divide by zero check
+	EXPECT_TRUE(v2 == Vector3()) << v2;
 }
 
 TEST(vector3, getNormal)
@@ -201,6 +221,11 @@ TEST(vector3, getNormal)
 	EXPECT_FLOAT_EQ(0.56568542494923801952067548968388, v2.y);
 	EXPECT_FLOAT_EQ(0.70710678118654752440084436210485, v2.z);
 	EXPECT_TRUE(v == Vector3(30, 40, 50)) << "verify unchanged";
+
+	//divide by zero check
+	v = Vector3();
+	v2 = v.GetNormal() = Vector3();
+	EXPECT_TRUE(Vector3() == v2) << v2;
 }
 
 TEST(vector3, dotProduct)

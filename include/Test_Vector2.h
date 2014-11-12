@@ -153,6 +153,11 @@ TEST(vector2, normalize)
 	v.Normalize();
 	EXPECT_FLOAT_EQ(.6, v.x);
 	EXPECT_FLOAT_EQ(.8, v.y);
+
+	//divide by zero check
+	v = Vector2();
+	v.Normalize();
+	EXPECT_TRUE(Vector2() == v) << v;
 }
 
 TEST(vector2, getNormal)
@@ -163,6 +168,11 @@ TEST(vector2, getNormal)
 	EXPECT_FLOAT_EQ(.6, v2.x);
 	EXPECT_FLOAT_EQ(.8, v2.y);
 	EXPECT_TRUE(v == Vector2(30, 40));
+
+	//divide by zero check
+	v = Vector2();
+	v2 = v.GetNormal() = Vector2();
+	EXPECT_TRUE(Vector2() == v2) << v2;
 }
 
 TEST(vector2, dotProduct)
