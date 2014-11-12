@@ -142,9 +142,16 @@ TEST(vector3, subtractOperator)
 	Vector3 v2(5, 5, 5);
 	Vector3 v3 = v1 - v2;
 
-	EXPECT_TRUE(v1 == Vector3(10, 10, 10)) << "verify unchanged";
-	EXPECT_TRUE(v2 == Vector3(5, 5, 5)) << "verify unchanged";
-	EXPECT_TRUE(v3 == Vector3(5, 5, 5)) << "verify subtract returned";
+	EXPECT_TRUE(v1 == Vector3(10, 10, 10)) << v1 << "verify unchanged";
+	EXPECT_TRUE(v2 == Vector3(5, 5, 5)) << v2 << "verify unchanged";
+	EXPECT_TRUE(v3 == Vector3(5, 5, 5)) << v3 << "verify subtract returned";
+
+	//chaining 
+	v3 = v1 - v2 - v2;
+	EXPECT_TRUE(v1 == Vector3(10, 10, 10)) << v1 << "verify unchanged";
+	EXPECT_TRUE(v2 == Vector3(5, 5, 5)) << v2 << "verify unchanged";
+	EXPECT_TRUE(v3 == Vector3(0,0,0)) << v3 << "verify subtract returned";
+
 }
 
 TEST(vector3, subtractAssignmentOperator)
@@ -253,4 +260,35 @@ TEST(vector3, crossProduct)
 	EXPECT_TRUE(xProd == Vector3(0, 0, 100));
 }
 
+TEST(vector3, getLERP)
+{
+	float percent = 0;
+	Vector3 start(0, 0, 0);
+	Vector3 end(5, 5, 5);
+	Vector3 result = start.GetLERP(end, percent);
+
+	EXPECT_TRUE(start == result);
+	percent = 1;
+	result = start.GetLERP(end, percent);
+	EXPECT_TRUE(end == result);
+	percent = .5;
+	result = start.GetLERP(end, percent);
+	EXPECT_TRUE(Vector3(2.5, 2.5, 2.5) == result);
+}
+
+TEST(vector3, lerp_static)
+{
+	float percent = 0;
+	Vector3 start(0, 0, 0);
+	Vector3 end(5, 5, 5);
+	Vector3 result = Vector3::LERP(start, end, percent);
+
+	EXPECT_TRUE(start == result);
+	percent = 1;
+	result = Vector3::LERP(start, end, percent);
+	EXPECT_TRUE(end == result);
+	percent = .5;
+	result = Vector3::LERP(start, end, percent);
+	EXPECT_TRUE(Vector3(2.5, 2.5, 2.5) == result);
+}
 #endif

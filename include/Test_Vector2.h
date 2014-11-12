@@ -76,6 +76,12 @@ TEST(vector2, additionOperator)
 	EXPECT_TRUE(v1 == Vector2(10, 10)) << "verify unchanged";
 	EXPECT_TRUE(v2 == Vector2(5, 5)) << "verify unchanged";
 	EXPECT_TRUE(v3 == Vector2(15, 15)) << "verify addition returned";
+
+	//chaining
+	v3 = v1 + v1 + v2;
+	EXPECT_TRUE(v1 == Vector2(10, 10)) << "verify unchanged";
+	EXPECT_TRUE(v2 == Vector2(5, 5)) << "verify unchanged";
+	EXPECT_TRUE(v3 == Vector2(25,25)) << "verify addition returned";
 }
 
 TEST(vector2, additionAssignmentOperator)
@@ -103,6 +109,13 @@ TEST(vector2, subtractOperator)
 	EXPECT_TRUE(v1 == Vector2(10, 10)) << "verify unchanged";
 	EXPECT_TRUE(v2 == Vector2(5, 5)) << "verify unchanged";
 	EXPECT_TRUE(v3 == Vector2(5, 5)) << "verify subtract returned";
+
+	//chaining
+	v3 = v1 - v2 - v2;
+	EXPECT_TRUE(v1 == Vector2(10, 10)) << v1 << "verify unchanged";
+	EXPECT_TRUE(v2 == Vector2(5, 5)) << v2 << "verify unchanged";
+	EXPECT_TRUE(v3 == Vector2(0,0)) << v3 << "verify subtract returned";
+
 }
 
 TEST(vector2, subtractAssignmentOperator)
@@ -113,6 +126,12 @@ TEST(vector2, subtractAssignmentOperator)
 
 	EXPECT_TRUE(v1 == Vector2(-5, -5)) << "verify subtract applied";
 	EXPECT_TRUE(v2 == Vector2(10, 10)) << "verify unchanged";
+
+	//chaining
+	v1 = Vector2(5, 5);
+	v1 -= v2 -= v2;
+	EXPECT_TRUE(Vector2(5, 5) == v1) << v1;
+	EXPECT_TRUE(Vector2() == v2) << v2;
 }
 
 TEST(vector2, multiplyOperator)
@@ -199,7 +218,24 @@ TEST(vector2, getPerp)
 
 }
 
-TEST(vector2, lerp)
+TEST(vector2, getLERP)
+{
+	float percent = 0;
+	Vector2 start(0, 0);
+	Vector2 end(5, 5);
+	Vector2 result = start.GetLERP(end, percent);
+
+	EXPECT_TRUE(start == result);
+	percent = 1;
+	result = start.GetLERP(end, percent);
+	EXPECT_TRUE(end == result);
+	percent = .5;
+	result = start.GetLERP(end, percent);
+	EXPECT_TRUE(Vector2(2.5, 2.5) == result);
+
+}
+
+TEST(vector2, lerp_static)
 {
 	float percent = 0;
 	Vector2 start(0, 0);
@@ -216,7 +252,6 @@ TEST(vector2, lerp)
 	result = Vector2::LERP(start, end, percent);
 	EXPECT_TRUE(Vector2(2.5, 2.5) == result) << "result " << result;
 }
-
 
 
 #endif
